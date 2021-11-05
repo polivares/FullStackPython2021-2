@@ -65,4 +65,10 @@ lion = Leon("Leoncio", 10)
 
 print(cat.emitirSonido())
 print(lion.emitirSonido())
+print("Llamado de funcion")
 
+def makeSound(felino):
+    print(felino.emitirSonido())
+
+makeSound(cat)
+makeSound(lion)
