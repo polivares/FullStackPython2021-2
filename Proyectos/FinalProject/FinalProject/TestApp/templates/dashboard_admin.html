@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestApp</title>
+</head>
+<body>
+    <nav>
+        
+    </nav>
+    <section>
+        <div>
+            <h1>Manage Users</h1>
+            <a href='/users/new'>Add new</a>
+        </div>
+        <table>
+            <th>
+                <td>ID</td>
+                <td>Name</td>
+                <td>email</td>
+                <td>user_level</td>
+                <td>actions</td>
+            </th>
+            <!--El resto se llena dependiendo de los usuarios en la tabla.
+            Se utilizará Jinja-->
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{usuario.id}}</td>
+                <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+                <td>{{usuario.email}}</td>
+                <td> 
+                    {% if usuario.user_level == 9 %}
+                    admin
+                    {% elif usuario.user_level == 0 %}
+                    normal
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="/users/edit/{{usuario.id}}">Edit</a>
+                    <form action='/dashboard/admin/' method="POST">
+                        {% csrf_token %} 
+                        <input type="hidden" name="id" value="{{usuario.id}}">
+                        <input type="submit" value="remove">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+</body>
+</html>
