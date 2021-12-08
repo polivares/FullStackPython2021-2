@@ -24,4 +24,9 @@ class Comentario(models.Model):
     mensaje = models.ForeignKey(Mensaje,
                                 related_name="comentarios",
                                 on_delete=models.CASCADE)
+    usuario_origen= models.ForeignKey(Usuario,
+                                        related_name = "comentarios_enviados",
+                                        on_delete= models.CASCADE)
+    comentario = models.TexField(blank=True)
+
                                            

@@ -174,3 +174,7 @@ def users_edit(request):
         usuario.save()
 
     return render(request, 'users_edit.html')
+
+def logout(request):
+    request.session.clear()
+    return redirect('/')

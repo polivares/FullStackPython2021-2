@@ -8,11 +8,17 @@
 </head>
 <body>
     <nav>
-        
+        {% if session.user_level == 0 %}
+            <a href="/dashboard">Dashboard</a>
+        {% else %}
+            <a href="/dashboard/admin">Dashboard</a>
+        {% endif %}
+        <a href="/logout">Logout</a>
     </nav>
     <section>
         <div>
             <h1>Manage Users</h1>
+            
             <a href='/users/new'>Add new</a>
         </div>
         <table>
